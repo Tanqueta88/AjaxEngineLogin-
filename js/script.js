@@ -55,3 +55,20 @@ function validateCredentials() {
     requestSend('https://jsonplaceholder.typicode.com/users/', id, action, 'GET');
 
 }
+
+function initialize() {
+    if (window.XMLHttpRequest) {
+        http = new XMLHttpRequest();
+    } else {
+        http = new ActiveXObject();
+    }
+}
+
+
+function requestSend(url, id, actuatingFunction, method) {
+
+    http.onreadystatechange = actuatingFunction;
+    http.open(method, url + id, true);
+    http.send();
+
+}
