@@ -7,7 +7,24 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    
+    <div>
+        <form id="form">    
+            <h2>LOGIN</h2>
+            <div >
+                <input type="email" required autofocus id="email" onblur="verifyUser()">
+            <label> </label>
+            </div>
+            <br><br>
+            <div >
+                <input type="password" id="password" required  onblur="verifyPassword()">
+                <label></label>
+            </div>    
+            <button type="button"  onclick="validateCredentials()">Login</button>
+            <p></p> 
+            <br> <br> <br>
+        </form>    
+        <p id="passwordLocked"></p>
+    </div>    
 </body>
 <script src="js/script.js"></script>
 </html>
