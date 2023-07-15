@@ -7,24 +7,26 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div>
+    <div class="login-box">
         <form id="form">    
             <h2>LOGIN</h2>
-            <div >
-                <input type="email" required autofocus id="email" onblur="verifyUser()">
-            <label> </label>
+            <div class="user-box">
+                <input type="email" class="form_input" required autofocus id="email" onblur="verifyUser()">
+            <label class="form_label">User</label>
             </div>
+            <p id="wrongEmail" style="color:rgb(247, 44, 44)"></p>
             <br><br>
-            <div >
-                <input type="password" id="password" required  onblur="verifyPassword()">
-                <label></label>
-            </div>    
-            <button type="button"  onclick="validateCredentials()">Login</button>
-            <p></p> 
-            <br> <br> <br>
+            <div class="user-box">
+                <input type="password" class="form_input" id="password" required  onblur="verifyPassword()">
+                <label  class="form_label">Password</label>
+            </div>
+            <p id="wrongPassword" style="color:red"></p>
+    
+            <button type="button" class="form_submit" onclick="validateCredentials()">Login</button>
+            <p id=""></p> <br> <br> <br>
         </form>    
-        <p id="passwordLocked"></p>
-    </div>    
+        <p id="passwordLocked"></p>   
+    </div>
 </body>
 <script src="js/script.js"></script>
 </html>
