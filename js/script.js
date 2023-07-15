@@ -74,22 +74,23 @@ function requestSend(url, id, actuatingFunction, method) {
 
 }
 
-function action() { three 
+function action() {
+    three
 
     if (http.readyState == 4 && http.status == 200) {
         var response = JSON.parse(http.response)
 
         let user = document.getElementById("email").value;
-    
+
         if (response.email == user) {
             alert("Successful login, welcome!");
 
             window.location.href = "./table.html";
 
-        } else{
+        } else {
             Attempts -= 1;
 
-            alert( "A" + Attempts + " tries left"); 
+            alert("A" + Attempts + " tries left");
             if (Attempts <= 0) {
                 document.getElementById('passwordLocked').innerHTML = "<p>Attention *your credentials were blocked*.<br>Reload the site to try again</p>";
 
