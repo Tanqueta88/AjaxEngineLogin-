@@ -97,32 +97,43 @@ h3 {
     display: block;
 }
 
- .login-box a span:nth-child(1) {
+.login-box a span:nth-child(1) {
     top: 0;
     left: -100%;
     width: 100%;
     height: 2px;
     background: linear-gradient(90deg, transparent, #03e9f4);
     animation: btn-anim1 1s linear infinite;
-  }
-  .lowerDiv {
+}
+.lowerDiv {
     color: #ffffff;
     margin-left: 20px;
-  }
+}
 
-  .form_input,
-  .form_submit,
-  .form_label{
+.form_input,
+.form_submit,
+.form_label{
     display:block;
     width: 100%;
     font-size:1.3em;    
-  }
+}
 
-  .form_submit:hover{
+.form_submit:hover{
     background-color:#03e9f4;
     transition:cubic-bezier(0.165, 0.84, 0.44, 1)
-  
+
 }
+
+#wrongPassword,#wrongEmail,#passwordLocked{
+
+        font-size: 0.7em;
+}
+
+#passwordLocked{
+    color: red;
+    
+}
+
 
 p{
     color: red;
