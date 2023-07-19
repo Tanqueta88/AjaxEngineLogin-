@@ -1,4 +1,4 @@
-let credentials = {
+let credenciales = {
     user: false,
     password: false
 
@@ -7,57 +7,57 @@ let credentials = {
 
 let http;
 
-let Attempts = 3;
+let intentos = 3;
 
-let regExpemail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-var regularPhrase = /^\d{1,2}$/;
+let regExpMail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+var expresionRegular = /^\d{1,2}$/;
 
-let password = document.getElementById("password");
-let email = document.getElementById("email");
-
-
-function verifyUser() {
-
-    let wrongEmail = document.getElementById("wrongEmail");
+let clave = document.getElementById("password");
+let mail = document.getElementById("mail");
 
 
-    if (regExpemail.test(email.value)) {
+function verificarUsuario() {
 
-        console.log("valid email");
-        credentials.user = true;
-        wrongEmail.innerHTML = "";
+    let mailErrado = document.getElementById("mailErrado");
+
+
+    if (regExpMail.test(mail.value)) {
+
+        console.log("Mail valido");
+        credenciales.user = true;
+        mailErrado.innerHTML = "";
     } else {
-        wrongEmail.innerHTML = "*User must be an email*";
+        mailErrado.innerHTML = "*El usuario debe ser un correo electronico*";
     }
 
 }
 
-function verifyPassword() {
+function verificarPassword() {
 
-    let wrongEmail = document.getElementById("wrongEmail");
+    let passwordErrado = document.getElementById("passwordErrado");
 
-    if (regularPhrase.test(password.value)) {
+    if (expresionRegular.test(clave.value)) {
 
-        console.log("Invalid password");
-        credentials.password = true;
-        wrongPassword.innerHTML = "";
+        console.log("Password valido");
+        credenciales.password = true;
+        passwordErrado.innerHTML = "";
     } else {
-        wrongPassword.innerHTML = "*Password must contain one or two digits!*";
+        passwordErrado.innerHTML = "*El Password debe contener uno o dos digitos!*";
     }
 }
 
 
 
-function validateCredentials() {
+function validarCredenciales() {
 
-    initialize();
+    inicializar();
     let id = document.getElementById('password').value;
     requestSend('https://jsonplaceholder.typicode.com/users/', id, action, 'GET');
 
 }
 
 
-function initialize() {
+function inicializar() {
     if (window.XMLHttpRequest) {
         http = new XMLHttpRequest();
     } else {
@@ -66,35 +66,34 @@ function initialize() {
 }
 
 
-function requestSend(url, id, actuatingFunction, method) {
+function requestSend(url, id, funcionActuadora, metodo) {
 
-    http.onreadystatechange = actuatingFunction;
-    http.open(method, url + id, true);
+    http.onreadystatechange = funcionActuadora;
+    http.open(metodo, url + id, true);
     http.send();
 
 }
 
 function action() {
-    three
 
     if (http.readyState == 4 && http.status == 200) {
-        var response = JSON.parse(http.response)
+        var respuesta = JSON.parse(http.response)
 
-        let user = document.getElementById("email").value;
+        let user = document.getElementById("mail").value;
+     
+        if (respuesta.email == user) {
+            alert("Logueo exitosoo,Bienvenido!");
 
-        if (response.email == user) {
-            alert("Successful login, welcome!");
+            window.location.href = "./menu.html";
 
-            window.location.href = "./table.html";
+        } else{
+            intentos -= 1;
 
-        } else {
-            Attempts -= 1;
+            alert("te restan " + intentos + " intentos.");
+            if (intentos <= 0) {
+                document.getElementById('claveBloqueada').innerHTML = "<p>Atencion*tus credenciales fueron bloqueadas*.<br>Recargue el sitio para volver a intentar</p>";
 
-            alert("A" + Attempts + " tries left");
-            if (Attempts <= 0) {
-                document.getElementById('passwordLocked').innerHTML = "<p>Attention *your credentials were blocked*.<br>Reload the site to try again</p>";
-
-                document.getElementById('form').style.visibility = "hidden";
+                document.getElementById('formulario').style.visibility = "hidden";
             }
         }
 
