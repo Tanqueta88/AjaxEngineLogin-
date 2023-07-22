@@ -22,3 +22,23 @@ function requestSend(url, id, funcionActuadora, metodo) {
     http.send();
 
 }
+
+function action() {
+    var name = document.getElementById('name');
+    var status = document.getElementById('status');
+    var species = document.getElementById('species');
+    var type = document.getElementById('type');
+    var gender = document.getElementById('gender');
+    console.log(http.readyState);
+    if (http.readyState == 4 && http.status == 200) {
+        var respuesta = JSON.parse(http.response)
+
+        name.innerHTML = respuesta.name
+        status.innerHTML = respuesta.status
+        species.innerHTML = respuesta.species
+        type.innerHTML = respuesta.type
+        gender.innerHTML = respuesta.gender
+        imagenUrl = respuesta.image;
+
+    } 
+}
