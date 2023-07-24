@@ -7,6 +7,8 @@ function obtenerData() {
     requestSend('https://rickandmortyapi.com/api/character/', id, action, 'GET');
 }
 
+
+
 function inicializar() {
     if (window.XMLHttpRequest) {
         http = new XMLHttpRequest();
@@ -22,6 +24,8 @@ function requestSend(url, id, funcionActuadora, metodo) {
     http.send();
 
 }
+
+
 
 function action() {
     var name = document.getElementById('name');
@@ -40,5 +44,26 @@ function action() {
         gender.innerHTML = respuesta.gender
         imagenUrl = respuesta.image;
 
-    } 
+    } else {
+
+        if (http.readyState == 4) {
+
+            document.getElementById("NotFound").innerHTML = "Personaje inexistente,vuelva a intentar...";
+
+        }else{
+            document.getElementById("NotFound").innerHTML ="";
+        }
+    }
+
+}
+
+
+function backPage() {
+    window.location.href = "./index.html";
+}
+
+function getImage() {
+
+
+    window.location.href = imagenUrl;
 }
