@@ -16,6 +16,23 @@
 
 <body>
     <H1>TABLE</H1>
+    <div id="datos_user">
+    <div class="reloj">10:15:20</div>
+
+    <script>
+        setInterval(() => {
+            var reloj = document.getElementsByClassName("reloj")[0];
+            var tiempoActual = new Date();
+            var hora = tiempoActual.getHours();
+            var minutos = tiempoActual.getMinutes();
+            var segundos = tiempoActual.getSeconds();
+            if (segundos < 10) {
+                segundos = `0${segundos}`;
+            }
+
+            reloj.innerHTML = `${hora}:${minutos}:${segundos}`;
+        }, 1000)
+    </script>
     <table class="container">
         <thead>
             <tr>
